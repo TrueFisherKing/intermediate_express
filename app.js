@@ -1,13 +1,16 @@
 var express = require("express");
 var app = express();
 
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+
 app.get("/", function(req, res){
-    res.render("home.ejs");
+    res.render("home");
 });
 
 app.get("/saw/:word", function(req, res){
     var word = req.params.word;
-    res.render("saw.ejs", {word: word});
+    res.render("saw", {word: word});
 });
 
 app.get("/posts", function(req, res){
@@ -17,7 +20,7 @@ app.get("/posts", function(req, res){
         {title: "post 3", author: "Hercules"}  
     ];
     
-    res.render("posts.ejs", {posts: posts});
+    res.render("posts", {posts: posts});
 });
 
 
